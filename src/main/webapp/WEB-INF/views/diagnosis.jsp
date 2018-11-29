@@ -4,8 +4,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
 <%--@elvariable id="diagnosis" type="java"--%>

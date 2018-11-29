@@ -5,4 +5,6 @@ import pl.coderslab.entities.Patient;
 
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
+
+    Patient findByEmail(String email);
 }

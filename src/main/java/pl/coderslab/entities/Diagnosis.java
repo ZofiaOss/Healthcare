@@ -1,6 +1,8 @@
 package pl.coderslab.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "DIAGNOSES")
@@ -11,6 +13,8 @@ public class Diagnosis {
     private Long id;
     @Column(length = 1000)
     private String name;
+    @ManyToMany(mappedBy = "diagnoses")
+    private List<Patient> patients = new ArrayList<>();
 
     public Long getId() {
         return id;

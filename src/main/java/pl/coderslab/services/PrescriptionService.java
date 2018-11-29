@@ -14,6 +14,8 @@ public interface PrescriptionService {
 
     Prescription find(Long id);
 
+    Prescription findWithOthers(Long id);
+
     void delete(Long id);
 
     List<Prescription> findAll();

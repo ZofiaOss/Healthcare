@@ -26,13 +26,10 @@
                     <th>Name</th>
                     <th>Surname</th>
                     <th>PESEL</th>
-                    <th>Street name</th>
-                    <th>Street number</th>
-                    <th>City</th>
-                    <th>Post code</th>
-                    <th>Country</th>
+                    <th>Address</th>
                     <th>Phone number</th>
-                    <th>email</th>
+                    <th>Email</th>
+                    <th>Allergies</th>
                     <th>Actions</th>
                 </tr>
                 <c:forEach var="patient" items="${patients}">
@@ -40,17 +37,14 @@
                         <td>${patient.name}</td>
                         <td>${patient.surname}</td>
                         <td>${patient.pesel}</td>
-                        <td>${patient.streetName}</td>
-                        <td>${patient.streetNumber}</td>
-                        <td>${patient.city}</td>
-                        <td>${patient.postCode}</td>
-                        <td>${patient.country}</td>
+                        <td>${patient.streetNumber} ${patient.streetName},<br/>${patient.postCode}, ${patient.city},<br/>${patient.country}</td>
                         <td>${patient.phoneNumber}</td>
                         <td>${patient.email}</td>
+                        <td>${patient.allergies}</td>
                         <td>
                             <a href="#"
                                onclick="confirmDelete(${patient.id}, '${patient.name}')" class="btn btn-danger">Delete</a>
-                            <a href="/books/update/${patient.id}" class="btn btn-success">Edit</a>
+                            <a href="/patients/update/${patient.id}" class="btn btn-success">Edit</a>
                         </td>
                     </tr>
                 </c:forEach>

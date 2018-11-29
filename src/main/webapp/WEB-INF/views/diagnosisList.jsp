@@ -9,7 +9,7 @@
 <body>
 <div class="container">
 
-    <h3 class="header">Doctors</h3>
+    <h3 class="header">Diagnoses</h3>
 
     <div class="card">
         <div class="card-body">

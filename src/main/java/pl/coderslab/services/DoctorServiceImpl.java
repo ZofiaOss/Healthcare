@@ -1,9 +1,11 @@
 package pl.coderslab.services;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.entities.Doctor;
+import pl.coderslab.entities.Patient;
 import pl.coderslab.repositories.DoctorRepository;
 
 import java.util.List;
@@ -28,6 +30,18 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Doctor find(Long id) {
         return doctorRepository.getOne(id);
+    }
+
+    @Override
+    public Doctor findWithOthers(Long id) {
+        Doctor doctor = find(id);
+        Hibernate.initialize(doctor.getPrescriptions());
+        return doctor;
+    }
+
+    @Override
+    public Doctor findByEmail(String email){
+        return doctorRepository.findByEmail(email);
     }
 
     @Override

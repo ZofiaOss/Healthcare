@@ -66,8 +66,12 @@ public class PrescriptionController {
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
-        Prescription prescription = prescriptionService.find(id);
+        Prescription prescription = prescriptionService.findWithOthers(id);
         model.addAttribute("prescription", prescription);
+        List<Patient> patients = patientService.findAll();
+        model.addAttribute("patients", patients);
+        List<Doctor> doctors = doctorService.findAll();
+        model.addAttribute("doctors", doctors);
         return "prescription";
     }
 

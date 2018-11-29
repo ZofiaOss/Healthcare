@@ -4,10 +4,11 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
+
 <%--@elvariable id="patient" type="java"--%>
 <form:form method="post" modelAttribute="patient">
 
@@ -17,6 +18,20 @@
 
         <div class="card">
             <div class="card-body">
+
+                <div class="form-group">
+                    <label for="emailId">Email (will be used as a login):</label>
+                    <form:input type="email" path="email"  id="emailId" class="form-control"/>
+                    <form:errors path="email" element="div" cssClass="error"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordId">Password:</label>
+                    <form:input type="password" path="password"  id="passwordId" class="form-control"/>
+                    <form:errors path="password" element="div" cssClass="error"/>
+                </div>
+
+                <br/>
 
                 <div class="form-group">
                     <label for="nameId">Name:</label>
@@ -73,16 +88,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="emailId">Email:</label>
-                    <form:input type="text" path="email"  id="emailId" class="form-control"/>
-                    <form:errors path="email" element="div" cssClass="error"/>
+                    <label for="allergiesId">Allergies:</label>
+                    <form:input type="text" path="allergies"  id="allergiesId" class="form-control"/>
+                    <form:errors path="allergies" element="div" cssClass="error"/>
                 </div>
-
-                <%--<div class="form-group">--%>
-                    <%--<label for="allergiesId">Allergies:</label>--%>
-                    <%--<form:input type="text" path="allergies"  id="allergiesId" class="form-control"/>--%>
-                    <%--<form:errors path="allergies" element="div" cssClass="error"/>--%>
-                <%--</div>--%>
 
                 <input type="submit" class="btn btn-primary" value="Save">
             </div>

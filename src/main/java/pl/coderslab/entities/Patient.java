@@ -12,6 +12,8 @@ public class Patient {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
+    private String email;
+    private String password;
     private String name;
     private String surname;
     private String pesel;
@@ -21,13 +23,16 @@ public class Patient {
     private String city;
     private String country;
     private String phoneNumber;
-    private String email;
-//    private List<String> allergies;
+    private String allergies;
+
 
     @OneToMany(mappedBy = "patient",
             cascade = CascadeType.ALL)
     private List<Prescription> prescriptions =
             new ArrayList<>();
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private List<Diagnosis> diagnoses = new ArrayList<>();
 
     @Transient
     private String fullName;
@@ -126,12 +131,27 @@ public class Patient {
         return name + " " + surname;
     }
 
+    public String getAllergies() {
+        return allergies;
+    }
 
-    //    public List<String> getAllergies() {
-//        return allergies;
-//    }
-//
-//    public void setAllergies(List<String> allergies) {
-//        this.allergies = allergies;
-//    }
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public List<Prescription> getPrescriptions() {
+        return prescriptions;
+    }
+
+    public void setPrescriptions(List<Prescription> prescriptions) {
+        this.prescriptions = prescriptions;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

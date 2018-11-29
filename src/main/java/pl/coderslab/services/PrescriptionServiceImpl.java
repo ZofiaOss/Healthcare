@@ -1,8 +1,10 @@
 package pl.coderslab.services;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.entities.Patient;
 import pl.coderslab.entities.Prescription;
 import pl.coderslab.repositories.PrescriptionRepository;
 
@@ -28,6 +30,14 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     @Override
     public Prescription find(Long id) {
         return prescriptionRepository.getOne(id);
+    }
+
+    @Override
+    public Prescription findWithOthers(Long id) {
+        Prescription prescription = find(id);
+        Hibernate.initialize(prescription.getPatient());
+        Hibernate.initialize(prescription.getDoctor());
+        return prescription;
     }
 
     @Override

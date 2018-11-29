@@ -12,6 +12,10 @@ public interface DoctorService {
 
     Doctor find(Long id);
 
+    Doctor findWithOthers(Long id);
+
+    Doctor findByEmail(String email);
+
     void delete(Long id);
 
     List<Doctor> findAll();

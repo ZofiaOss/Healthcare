@@ -1,5 +1,6 @@
 package pl.coderslab.controllers;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entities.Doctor;
 import pl.coderslab.services.DoctorService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -17,7 +19,25 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("doctor", new Doctor());
+        return "loginDoctor";
+    }
 
+    @PostMapping("/login")
+    public String login(@ModelAttribute @Valid Doctor doctor, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "loginDoctor";
+        }
+        Doctor doctorDb = doctorService.findByEmail(doctor.getEmail());
+        boolean isLogged = doctorDb != null && BCrypt.checkpw(doctor.getPassword(), doctorDb.getPassword());
+        if (!isLogged) {
+            model.addAttribute("loginFailed", true);
+            return "loginDoctor";
+        }
+        return "homeDoctor";
+    }
 
     @GetMapping("/list")
     public String findAll(Model model) {
@@ -37,9 +57,11 @@ public class DoctorController {
         if (result.hasErrors()) {
             return "doctor";
         }
+        doctor.setPassword(BCrypt.hashpw(doctor.getPassword(), BCrypt.gensalt()));
         doctorService.save(doctor);
         return "redirect:list";
     }
+
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
@@ -50,7 +72,7 @@ public class DoctorController {
 
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, Model model) {
-        Doctor doctor = doctorService.find(id);
+        Doctor doctor = doctorService.findWithOthers(id);
         model.addAttribute("doctor", doctor);
         return "doctor";
     }
@@ -60,7 +82,8 @@ public class DoctorController {
         if(result.hasErrors()) {
             return "doctor";
         }
+        doctor.setPassword(BCrypt.hashpw(doctor.getPassword(), BCrypt.gensalt()));
         doctorService.update(doctor);
-        return "redirect:../list";
+        return "redirect:../home";
     }
 }

@@ -1,5 +1,6 @@
 package pl.coderslab.services;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +32,17 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
+    public Patient findWithOthers(Long id) {
+        Patient patient = find(id);
+        Hibernate.initialize(patient.getPrescriptions());
+        return patient;
+    }
+    @Override
+    public Patient findByEmail(String email){
+        return patientRepository.findByEmail(email);
+    }
+
+    @Override
     public void delete(Long id) {
         patientRepository.delete(id);
 
@@ -40,4 +52,5 @@ public class PatientServiceImpl implements PatientService {
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
+
 }
