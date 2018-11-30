@@ -24,6 +24,13 @@
                     <form:errors path="name" element="div" cssClass="error"/>
                 </div>
 
+                <div class="form-group">
+                    <label for="patientId">Patient:</label>
+                    <form:select path="patient.id" items="${patients}" itemLabel="fullName" itemValue="id" id="patientId" class="form-control"/>
+                    <form:errors path="patient" element="div" cssClass="error"/>
+                </div>
+
+
                 <input type="submit" class="btn btn-primary" value="Save">
             </div>
         </div>

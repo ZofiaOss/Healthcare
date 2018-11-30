@@ -1,10 +1,16 @@
 package pl.coderslab.entities;
 
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @Entity
 @Table(name = "PATIENTS")
 public class Patient {
@@ -26,13 +32,14 @@ public class Patient {
     private String allergies;
 
 
-    @OneToMany(mappedBy = "patient",
-            cascade = CascadeType.ALL)
-    private List<Prescription> prescriptions =
-            new ArrayList<>();
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List<Prescription> prescriptions = new ArrayList<>();
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Diagnosis> diagnoses = new ArrayList<>();
+
+    @ManyToOne
+    private Doctor doctor;
 
     @Transient
     private String fullName;
@@ -153,5 +160,29 @@ public class Patient {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Diagnosis> getDiagnoses() {
+        return diagnoses;
+    }
+
+    public void setDiagnoses(List<Diagnosis> diagnoses) {
+        this.diagnoses = diagnoses;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
     }
 }

@@ -36,6 +36,7 @@ public class DoctorServiceImpl implements DoctorService {
     public Doctor findWithOthers(Long id) {
         Doctor doctor = find(id);
         Hibernate.initialize(doctor.getPrescriptions());
+        Hibernate.initialize(doctor.getPatients());
         return doctor;
     }
 

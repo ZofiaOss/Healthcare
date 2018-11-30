@@ -3,8 +3,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -23,11 +23,12 @@
                 <c:forEach var="diagnosis" items="${diagnoses}">
                     <tr>
                         <td>${diagnosis.name}</td>
-                        <td>${diagnosis.patient.fullName}</td>
+                        <td>${diagnosis.patients.fullName}</td>
                     </tr>
                 </c:forEach>
             </table>
-            <a href="/doctors/home" class="btn btn-primary">Back</a>
+            <a href="/patients/home" title="Home" class="btn btn-secondary">Back</a>
+
         </div>
     </div>
 </div>

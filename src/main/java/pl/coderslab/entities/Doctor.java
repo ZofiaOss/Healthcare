@@ -22,6 +22,11 @@ public class Doctor {
     private List<Prescription> prescriptions =
             new ArrayList<>();
 
+    @OneToMany(mappedBy = "doctor",
+            cascade = CascadeType.ALL)
+    private List<Patient> patients =
+            new ArrayList<>();
+
     public Long getId() {
         return id;
     }
@@ -68,5 +73,20 @@ public class Doctor {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "fullName='" + fullName + '\'' +
+                '}';
     }
 }

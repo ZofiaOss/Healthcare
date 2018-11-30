@@ -36,8 +36,10 @@
                 </c:if>
 
                 <input type="submit" class="btn btn-primary" value="Login">
+                <a href="/patients/add" title="Home" class="btn btn-secondary">Register</a>
             </div>
         </div>
+
 
     </div>
 </form:form>

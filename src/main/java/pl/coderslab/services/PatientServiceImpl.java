@@ -35,8 +35,10 @@ public class PatientServiceImpl implements PatientService {
     public Patient findWithOthers(Long id) {
         Patient patient = find(id);
         Hibernate.initialize(patient.getPrescriptions());
+        Hibernate.initialize(patient.getDiagnoses());
         return patient;
     }
+
     @Override
     public Patient findByEmail(String email){
         return patientRepository.findByEmail(email);

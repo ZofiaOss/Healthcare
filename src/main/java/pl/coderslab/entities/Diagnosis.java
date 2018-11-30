@@ -13,8 +13,10 @@ public class Diagnosis {
     private Long id;
     @Column(length = 1000)
     private String name;
-    @ManyToMany(mappedBy = "diagnoses")
-    private List<Patient> patients = new ArrayList<>();
+
+    @ManyToOne
+    private Patient patient;
+
 
     public Long getId() {
         return id;
@@ -30,5 +32,13 @@ public class Diagnosis {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }

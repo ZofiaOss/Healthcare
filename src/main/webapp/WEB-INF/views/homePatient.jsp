@@ -15,10 +15,11 @@
         <div class="card-body">
 
             <div class="list-group">
-                <a href="/patients/update/{id}" class="list-group-item list-group-item-action">Update your details</a>
-                <a href="/prescriptions/list/{id}" class="list-group-item list-group-item-action">View your prescriptions</a>
-                <a href="/diagnoses/list/{id}" class="list-group-item list-group-item-action">View your diagnoses</a>
+                <a href="/patients/update" class="list-group-item list-group-item-action">Update your details</a>
+                <a href="/patients/prescriptions" class="list-group-item list-group-item-action">View your prescriptions</a>
+                <a href="/patients/diagnoses" class="list-group-item list-group-item-action">View your diagnoses</a>
             </div>
+            <a href="/home" title="Prescriptions" class="btn btn-secondary">Log out</a>
 
         </div>
     </div>

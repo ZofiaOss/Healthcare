@@ -50,4 +50,9 @@ public class PrescriptionServiceImpl implements PrescriptionService {
     public List<Prescription> findAll() {
         return prescriptionRepository.findAll();
     }
+
+    @Override
+    public List<Prescription> findByPatient(Patient patient) {
+        return prescriptionRepository.findByPatient(patient);
+    }
 }

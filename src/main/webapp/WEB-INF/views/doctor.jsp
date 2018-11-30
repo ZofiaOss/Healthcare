@@ -42,6 +42,8 @@
                     <form:errors path="bio" element="div" cssClass="error"/>
                 </div>
 
+                <form:hidden path="id" value="${doctor.id}" />
+
                 <input type="submit" class="btn btn-primary" value="Save">
             </div>
         </div>

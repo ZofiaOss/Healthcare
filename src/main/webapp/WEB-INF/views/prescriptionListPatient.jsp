@@ -5,18 +5,7 @@
     <title>Title</title>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/main.css" rel="stylesheet">
-    <script>
-        function confirmAccept(id, name) {
-            if (confirm("Are you sure you want to accept this prescription request? \"" + name + "\"")) {
-                window.location.href = "/doctors/accept/" + id;
-            }
-        }
-        function confirmReject(id, name) {
-            if (confirm("Are you sure you want to reject this prescription request? \"" + name + "\"")) {
-                window.location.href = "/doctors/reject/" + id;
-            }
-        }
-    </script>
+
 </head>
 <body>
 <div class="container">
@@ -35,7 +24,6 @@
                     <th>Doctor</th>
                     <th>Pending</th>
                     <th>Accepted</th>
-                    <th>Actions</th>
                 </tr>
                 <c:forEach var="prescription" items="${prescriptions}">
                     <tr>
@@ -46,16 +34,13 @@
                         <td>${prescription.doctor.fullName}</td>
                         <td>${prescription.pending}</td>
                         <td>${prescription.accepted}</td>
-                        <td>
-                            <a href="#"
-                               onclick="confirmAccept(${prescription.id}, '${prescription.name}')" class="btn btn-success">Accept</a>
-                            <a href="#"
-                               onclick="confirmReject(${prescription.id}, '${prescription.name}')" class="btn btn-danger">Reject</a>
-                        </td>
                     </tr>
                 </c:forEach>
             </table>
-            <a href="/doctors/home" class="btn btn-primary">Back</a>
+            <a href="/patients/home" title="Home" class="btn btn-secondary">Back</a>
+            <a href="/patients/addPrescription" title="Prescriptions" class="btn btn-secondary">Request prescription</a>
+
+
         </div>
     </div>
 </div>

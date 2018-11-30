@@ -38,18 +38,16 @@
                 </div>
 
                 <div class="form-group">
+                    <form:hidden path="doctor.id" value="${id}"/>
+                </div>
+
+                <div class="form-group">
                     <label for="patientId">Patient:</label>
                     <form:select path="patient.id" items="${patients}" itemLabel="fullName" itemValue="id" id="patientId" class="form-control"/>
                     <form:errors path="patient" element="div" cssClass="error"/>
                 </div>
 
-                <div class="form-group">
-                    <label for="doctorId">Doctor:</label>
-                    <form:select path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id" id="doctorId" class="form-control"/>
-                    <form:errors path="doctor" element="div" cssClass="error"/>
-                </div>
-
-                    <form:hidden path="pending" value="true" />
+                <form:hidden path="pending" value="true" />
 
 
 

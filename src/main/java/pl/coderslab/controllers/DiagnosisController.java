@@ -6,7 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entities.Diagnosis;
+import pl.coderslab.entities.Doctor;
+import pl.coderslab.entities.Patient;
 import pl.coderslab.services.DiagnosisService;
+import pl.coderslab.services.DoctorService;
+import pl.coderslab.services.PatientService;
 
 import java.util.List;
 
@@ -17,12 +21,19 @@ public class DiagnosisController {
     @Autowired
     private DiagnosisService diagnosisService;
 
+    @Autowired
+    private PatientService patientService;
+
+
+
 
 
     @GetMapping("/list")
     public String findAll(Model model) {
         List<Diagnosis> diagnoses = diagnosisService.findAll();
         model.addAttribute("diagnoses", diagnoses);
+        List<Patient> patients = patientService.findAll();
+        model.addAttribute("patients", patients);
         return "diagnosisList";
     }
 

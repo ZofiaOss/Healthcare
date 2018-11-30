@@ -93,6 +93,15 @@
                     <form:errors path="allergies" element="div" cssClass="error"/>
                 </div>
 
+                <div class="form-group">
+                    <label for="doctorId">Doctor:</label>
+                    <form:select path="doctor.id" items="${doctors}" itemLabel="fullName" itemValue="id" id="doctorId" class="form-control"/>
+                    <form:errors path="doctor" element="div" cssClass="error"/>
+                </div>
+
+                <form:hidden path="id" value="${patient.id}" />
+
+
                 <input type="submit" class="btn btn-primary" value="Save">
             </div>
         </div>

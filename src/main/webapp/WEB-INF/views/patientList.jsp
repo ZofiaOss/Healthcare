@@ -44,11 +44,15 @@
                         <td>
                             <a href="#"
                                onclick="confirmDelete(${patient.id}, '${patient.name}')" class="btn btn-danger">Delete</a>
-                            <a href="/patients/update/${patient.id}" class="btn btn-success">Edit</a>
+                            <a href="/doctors/addDiagnosis" class="btn btn-secondary">Add diagnosis</a>
+                            <a href="/doctors/addPrescription" class="btn btn-primary">Add prescription</a>
+
+
                         </td>
                     </tr>
                 </c:forEach>
             </table>
+            <a href="/doctors/home" class="btn btn-primary">Back</a>
 
         </div>
     </div>
